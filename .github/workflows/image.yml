@@ -15,8 +15,12 @@ jobs:
         uses: crazy-max/ghaction-docker-buildx@v3
         with:
           buildx-version: latest
-      - name: login to docker hub
-        run: echo $CR_PAT | docker login ghcr.io -u maxkueng --password-stdin
+      - name: Log in to the Container registry
+        uses: docker/login-action@f054a8b539a109f9f41c372932f1ae047eff08c9
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.CR_PAT }}
       - name: build the image
         run: |
           docker buildx build --push \

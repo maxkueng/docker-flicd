@@ -1,8 +1,8 @@
 ARG ARCH=
-FROM ${ARCH}alpine:3.14.0
+FROM ${ARCH}alpine:latest
 MAINTAINER Max Kueng (https://maxkueng.com/contact)
 
-RUN apk --no-cache --virtual deps add git && \
+RUN echo "${ARCH}" && apk --no-cache --virtual deps add git && \
     git clone https://github.com/50ButtonsEach/fliclib-linux-hci /tmp/src && \
     cp /tmp/src/bin/armv6l/flicd /usr/bin/flicd && \
     chmod +x /usr/bin/flicd && \
